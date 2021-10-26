@@ -34,4 +34,4 @@ scrape_configs:
 
   - job_name: uat-cadvisor
     static_configs:
-    - targets: ['10.1.1.41:18080','10.1.1.45:18080']
+    - targets: ['10.1.1.41:8080','10.1.1.45:8080']
