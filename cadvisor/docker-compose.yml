@@ -1,0 +1,23 @@
+version: '3.6'
+services:
+  cadvisor:
+    image: google/cadvisor
+    command: -logtostderr -docker_only
+    ports:
+     - target: 8080
+       published: 18080
+       protocol: tcp
+       mode: host # swarm mode must using host , else scape metrics from cadvisor has problem!
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /:/rootfs:ro
+      - /var/run:/var/run
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
